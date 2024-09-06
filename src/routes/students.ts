@@ -2,8 +2,9 @@ import { Router } from 'express';
 
 const router = Router();
 
-router.get('/me', (_, res) => {
-  res.status(401).send({ error: 401, message: 'Unauthorized' });
+router.get('/me', (req, res) => {
+  const { id, name, email } = req.user || {};
+  res.send({ id, name, email });
 });
 
 router.get('/data', (_, res) => {

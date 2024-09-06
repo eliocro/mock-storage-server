@@ -1,8 +1,7 @@
 import { Router } from 'express';
-import jwt from 'jsonwebtoken';
 import createUser from '@/utils/createUser';
+import { sign } from '@/utils/jwt';
 
-const secret = process.env.JWT_SECRET || 'secret';
 const mode = process.env.MODE || 'token';
 
 const paramName = process.env.QS_PARAM_NAME || 'storageToken';
@@ -15,9 +14,7 @@ router.get('/login', (req, res) => {
   const next = req.query.next?.toString() || req.headers.referer;
 
   const user = createUser();
-  const token = jwt.sign(user, secret, {
-    expiresIn: tokenTTL,
-  });
+  const token = sign(user);
 
   if (mode === 'cookie') {
     res.cookie(cookieName, token, {
