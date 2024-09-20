@@ -10,7 +10,6 @@ const auth: RequestHandler = (req, res, next) => {
       ? req.cookies[cookieName]
       : req.headers.authorization?.split(' ')[1];
 
-  console.log(token);
   if (!token) return res.sendStatus(401);
 
   try {

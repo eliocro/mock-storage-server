@@ -10,7 +10,7 @@ router.use('/user', user);
 router.use('/students', auth, students);
 
 router.get('/', (_, res) => {
-  res.send('Storage API Demo');
+  res.send('Storage API Mock Server');
 });
 
 export default router;
