@@ -4,13 +4,13 @@ import { sign } from '@/utils/jwt';
 
 const mode = process.env.MODE || 'token';
 
-const paramName = process.env.QS_PARAM_NAME || 'storageToken';
-const cookieName = process.env.COOKIE_NAME || 'StorageToken';
+const paramName = process.env.QS_PARAM_NAME || 'storageApiToken';
+const cookieName = process.env.COOKIE_NAME || 'StorageApiAuth';
 const tokenTTL = 86400; // 24h
 
 const router = Router();
 
-router.get('/login', (req, res) => {
+router.get('/openid-connect-redirect-app', (req, res) => {
   const next = req.query.next?.toString() || req.headers.referer;
 
   const user = createUser();
@@ -33,7 +33,7 @@ router.get('/login', (req, res) => {
   return res.redirect(url.toString());
 });
 
-router.get('/logout', (req, res) => {
+router.get('/user/logout', (req, res) => {
   const next = req.query.next?.toString() || req.headers.referer;
   res.clearCookie(cookieName);
 

@@ -6,7 +6,7 @@ import students from './students';
 
 const router = Router();
 
-router.use('/user', user);
+router.use(user);
 router.use('/students', auth, students);
 
 router.get('/', (_, res) => {
