@@ -10,7 +10,7 @@ const tokenTTL = 86400; // 24h
 
 const router = Router();
 
-router.get('/openid-connect-redirect-app', (req, res) => {
+router.get('/openid-connect-redirect/login', (req, res) => {
   const next = req.query.next?.toString() || req.headers.referer;
 
   const user = createUser();
@@ -33,7 +33,7 @@ router.get('/openid-connect-redirect-app', (req, res) => {
   return res.redirect(url.toString());
 });
 
-router.get('/user/logout', (req, res) => {
+router.get('/openid-connect-redirect/logout/drupal', (req, res) => {
   const next = req.query.next?.toString() || req.headers.referer;
   res.clearCookie(cookieName);
 
