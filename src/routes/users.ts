@@ -11,9 +11,9 @@ router.get('/me', (req, res) => {
 
 router.get('/me/storages/:storageName', (req, res) => {
   const { storageName } = req.params;
-  const data = DATA[storageName];
-  if (data === undefined) return res.sendStatus(404);
-  res.send(data);
+  res.send({
+    data: DATA[storageName] ?? null,
+  });
 });
 
 router.post('/me/storages/:storageName', (req, res) => {
